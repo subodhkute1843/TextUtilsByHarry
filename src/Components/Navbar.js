@@ -3,8 +3,6 @@ import PropTypes from 'prop-types'
 
 export default function Navbar(props) {
 
-  const textMode = props.mode === 'dark' ? 'light' : 'dark';
-
   const [searchInput, setSearchInput] = useState('');
   return (
     <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
@@ -27,7 +25,7 @@ export default function Navbar(props) {
                   value={searchInput}/>
           <button className="btn btn-outline-success" type="submit">Search</button>
         </form> */}
-        <div className={`form-check form-switch text-${textMode}`}>
+        <div className={`form-check form-switch text-${props.mode === 'dark' ? 'light' : 'dark'}`}>
           <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
           <label className="form-check-label" for="flexSwitchCheckDefault">Enable DarkMode</label>
         </div>

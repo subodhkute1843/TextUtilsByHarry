@@ -5,6 +5,7 @@ export default function TextForm(props) {
     // console.log("function clicked")
     let newText = text.toUpperCase();
     setText(newText);
+    props.showAlert("converted to uppercase!", "success")
   }
   const handleOnChange = (event) => {
     // console.log("On Change")
@@ -20,14 +21,15 @@ export default function TextForm(props) {
 
   return (
     <form>
-      <div className="container">   
+      
+      <div className="container" style={{color: props.mode==='dark'?'white':'#042743'}}>  
         <h1>{props.heading}</h1>
         <div className="mb-3">
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="myBox" rows="8"/>
+            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode==='dark'?'grey':'white', color: props.mode==='dark'?'white':'#042743'}} id="myBox" rows="8"/>
         </div>
         <button type="button" className="btn btn-primary" onClick={handleUpClick}>Convert To Uppercase</button><br /><br />
       </div>
-      <div className='container'>
+      <div className='container' style={{color: props.mode==='dark'?'white':'#042743'}}>
         <h1>Text Summary</h1>
         <p>{wordCount} {wordCount === 1 ? 'word' : 'words'} and {characterCount} characters</p>
       </div>

@@ -19,21 +19,44 @@ function App() {
       setAlert(null)
     }, 1500);
   }
+  
+  const [mode, setMode] = useState('light') //wheather dark mode is enabled or not 
+  
+  const removeBodyClasses = ()=> {
+    document.body.classList.remove('bg-light');
+    document.body.classList.remove('bg-dark');
+    document.body.classList.remove('bg-success');
+    document.body.classList.remove('bg-danger');
+    document.body.classList.remove('bg-warning');
+    document.body.classList.remove('bg-primary');
+  }
 
-  const toggleMode = ()=>{
-    if(mode === 'light'){
+
+  const toggleMode = (cls)=>{
+    removeBodyClasses();
+    // document.body.classList.add('bg-'+cls)
+    if (cls !== null){
+      setMode(cls);
+      if(cls === 'primary'){
+        document.body.style.backgroundColor = '#5BC0DE';
+      }
+      else if(cls === 'success'){document.body.style.backgroundColor = '#5BD9A6';}
+      else if(cls === 'danger'){document.body.style.backgroundColor = '#FF6666';}
+      else if(cls === 'warning'){document.body.style.backgroundColor = '#fff3cd';}
+      showAlert(cls+" mode has been enabled", "success");
+    }
+    else if(mode === 'light' ){
       setMode('dark');
       document.body.style.backgroundColor = '#042743';
       showAlert("Dark mode has been enabled", "success");
     }
-    else{
+    
+    else {
       setMode('light');
       document.body.style.backgroundColor = 'white';
       showAlert("Light mode has been enabled", "success");
     }
   }
-
-  const [mode, setMode] = useState('light') //wheather dark mode is enabled or not 
 
   return (
     <BrowserRouter>
